@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#6d4aff">
+  <title>D'CELL — Buku Kas 2.0</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#"><span class="brand-mark">D</span><span><b>D'CELL</b><small>BUKU KAS 2.0</small></span></a>
+      <div class="side-label">MENU UTAMA</div>
+      <nav id="sideNav">
+        <button class="nav-item active" data-page="dashboard"><span>▦</span> Dashboard</button>
+        <button class="nav-item" data-page="transaksi"><span>⇄</span> Transaksi</button>
+        <button class="nav-item" data-page="rekening"><span>▤</span> Rekening</button>
+        <button class="nav-item" data-page="utang"><span>↗</span> Utang & Piutang</button>
+        <button class="nav-item" data-page="laporan"><span>▥</span> Laporan</button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="profile"><div class="avatar">D</div><div><b>Demo D'CELL</b><small>Mode pratinjau</small></div><span class="dots">•••</span></div>
+        <button class="nav-item" id="themeBtn"><span>◐</span> Ganti tema</button>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div class="mobile-brand"><span class="brand-mark">D</span><b>D'CELL</b></div>
+        <div class="breadcrumb">Workspace <span>/</span> <b id="crumb">Dashboard</b></div>
+        <div class="top-actions"><span class="date-chip" id="today"></span><button class="icon-btn" id="themeTop" aria-label="Ganti tema">◐</button><div class="avatar small">D</div></div>
+      </header>
+
+      <section class="page active" id="page-dashboard">
+        <div class="welcome">
+          <div><div class="eyebrow">RINGKASAN USAHA</div><h1>Selamat datang kembali 👋</h1><p>Pantau arus kas D'CELL dalam satu tempat.</p></div>
+          <button class="primary" id="addTop">＋ Tambah transaksi</button>
+        </div>
+        <div class="balance-card">
+          <div class="balance-head"><span>Total saldo usaha</span><span class="live-dot">● Pratinjau</span></div>
+          <div class="balance-value" id="totalBalance">Rp 12.450.000</div>
+          <div class="balance-foot"><span>Saldo gabungan rekening & kas</span><span class="balance-icon">↗</span></div>
+          <div class="balance-glow"></div>
+        </div>
+        <div class="stats-grid">
+          <article class="stat-card"><div class="stat-top"><span class="stat-icon income">↙</span><span class="stat-period">Bulan ini</span></div><small>Total pemasukan</small><strong class="green" id="incomeTotal">Rp 8.250.000</strong><div class="stat-note">Uang masuk tercatat</div></article>
+          <article class="stat-card"><div class="stat-top"><span class="stat-icon expense">↗</span><span class="stat-period">Bulan ini</span></div><small>Total pengeluaran</small><strong class="red" id="expenseTotal">Rp 3.780.000</strong><div class="stat-note">Uang keluar tercatat</div></article>
+          <article class="stat-card"><div class="stat-top"><span class="stat-icon profit">✧</span><span class="stat-period">Bulan ini</span></div><small>Selisih kas</small><strong id="netTotal">Rp 4.470.000</strong><div class="stat-note">Pemasukan dikurangi pengeluaran</div></article>
+        </div>
+        <div class="content-grid">
+          <article class="panel chart-panel"><div class="panel-head"><div><h2>Arus kas</h2><p>Ringkasan 7 hari terakhir</p></div><span class="select-lite">Minggu ini⌄</span></div>
+            <div class="chart-legend"><span><i class="legend-dot purple"></i>Pemasukan</span><span><i class="legend-dot pale"></i>Pengeluaran</span></div>
+            <div class="chart" aria-label="Grafik arus kas"><div class="y-labels"><span>4 jt</span><span>3 jt</span><span>2 jt</span><span>1 jt</span><span>0</span></div><div class="chart-area"><div class="grid-lines"><i></i><i></i><i></i><i></i><i></i></div><div class="bars" id="bars"><div class="bar-pair"><i style="height:66%"></i><b style="height:32%"></b><small>Sen</small></div><div class="bar-pair"><i style="height:42%"></i><b style="height:24%"></b><small>Sel</small></div><div class="bar-pair"><i style="height:76%"></i><b style="height:39%"></b><small>Rab</small></div><div class="bar-pair"><i style="height:55%"></i><b style="height:28%"></b><small>Kam</small></div><div class="bar-pair"><i style="height:88%"></i><b style="height:45%"></b><small>Jum</small></div><div class="bar-pair"><i style="height:48%"></i><b style="height:30%"></b><small>Sab</small></div><div class="bar-pair"><i style="height:68%"></i><b style="height:22%"></b><small>Min</small></div></div></div></div>
+          </article>
+          <article class="panel quick-panel"><div class="panel-head"><div><h2>Akses cepat</h2><p>Catat aktivitas usaha</p></div></div><div class="quick-grid"><button class="quick-action" data-type="masuk"><span class="quick-icon income">＋</span><b>Pemasukan</b><small>Catat uang masuk</small></button><button class="quick-action" data-type="keluar"><span class="quick-icon expense">−</span><b>Pengeluaran</b><small>Catat uang keluar</small></button><button class="quick-action" data-type="transfer"><span class="quick-icon transfer">⇄</span><b>Transfer</b><small>Transaksi bank</small></button><button class="quick-action" data-type="tarik"><span class="quick-icon wallet">▣</span><b>Tarik tunai</b><small>Layanan nasabah</small></button></div></article>
+        </div>
+        <article class="panel recent-panel"><div class="panel-head"><div><h2>Transaksi terbaru</h2><p>Aktivitas yang terakhir dicatat</p></div><button class="text-btn" data-goto="transaksi">Lihat semua →</button></div><div class="table-wrap"><table><thead><tr><th>TRANSAKSI</th><th>KATEGORI</th><th>TANGGAL</th><th>NOMINAL</th><th>STATUS</th></tr></thead><tbody id="recentRows"><tr><td><b>Setoran tunai</b><small>Nasabah D'CELL</small></td><td><span class="tag">Setor tunai</span></td><td>12 Nov 2026</td><td class="green">+ Rp 1.500.000</td><td><span class="status">Selesai</span></td></tr><tr><td><b>Pembelian token listrik</b><small>PLN 123456789</small></td><td><span class="tag">Tagihan</span></td><td>12 Nov 2026</td><td class="red">− Rp 250.000</td><td><span class="status">Selesai</span></td></tr><tr><td><b>Top up DANA</b><small>Pelanggan</small></td><td><span class="tag">E-wallet</span></td><td>11 Nov 2026</td><td class="green">+ Rp 103.000</td><td><span class="status">Selesai</span></td></tr></tbody></table></div></article>
+      </section>
+
+      <section class="page" id="page-transaksi"><div class="page-title"><div><div class="eyebrow">PENCATATAN</div><h1>Transaksi</h1><p>Kelola seluruh pemasukan dan pengeluaran.</p></div><button class="primary" id="addTransactions">＋ Tambah transaksi</button></div><article class="panel"><div class="panel-head"><div><h2>Semua transaksi</h2><p>Data contoh untuk pratinjau tampilan</p></div><input class="search" id="searchTx" placeholder="Cari transaksi…"></div><div class="table-wrap"><table><thead><tr><th>TRANSAKSI</th><th>KATEGORI</th><th>TANGGAL</th><th>NOMINAL</th><th>STATUS</th></tr></thead><tbody id="allRows"></tbody></table></div></article></section>
+
+      <section class="page" id="page-rekening"><div class="page-title"><div><div class="eyebrow">SUMBER DANA</div><h1>Rekening</h1><p>Pantau saldo kas, bank, dan e-wallet.</p></div></div><div class="account-grid"><article class="account-card cash"><span>UANG TUNAI</span><b>Rp 2.450.000</b><small>Kas di laci</small></article><article class="account-card"><span>BNI</span><b>Rp 6.500.000</b><small>Rekening bank</small></article><article class="account-card"><span>BRI</span><b>Rp 2.800.000</b><small>Rekening bank</small></article><article class="account-card"><span>E-WALLET</span><b>Rp 700.000</b><small>Saldo dompet digital</small></article></div></section>
+
+      <section class="page" id="page-utang"><div class="page-title"><div><div class="eyebrow">CATATAN PELANGGAN</div><h1>Utang & Piutang</h1><p>Pantau kewajiban dan tagihan pelanggan.</p></div><button class="primary" id="debtInfo">＋ Catatan baru</button></div><div class="stats-grid two"><article class="stat-card"><small>Total piutang</small><strong class="green">Rp 850.000</strong><div class="stat-note">Belum diterima</div></article><article class="stat-card"><small>Total utang</small><strong class="red">Rp 300.000</strong><div class="stat-note">Belum dibayar</div></article></div><article class="panel empty-note"><div class="empty-icon">↗</div><h2>Ringkasan utang & piutang</h2><p>Halaman ini adalah contoh tampilan. Data asli akan disambungkan setelah struktur Firestore lama diverifikasi.</p></article></section>
+
+      <section class="page" id="page-laporan"><div class="page-title"><div><div class="eyebrow">ANALISIS USAHA</div><h1>Laporan</h1><p>Lihat performa keuangan D'CELL.</p></div><span class="select-lite">November 2026⌄</span></div><div class="stats-grid"><article class="stat-card"><small>Pemasukan</small><strong class="green">Rp 8.250.000</strong></article><article class="stat-card"><small>Pengeluaran</small><strong class="red">Rp 3.780.000</strong></article><article class="stat-card"><small>Laba bersih</small><strong>Rp 4.470.000</strong></article></div><article class="panel empty-note"><div class="empty-icon">▥</div><h2>Laporan keuangan</h2><p>Grafik dan rekap periode akan menggunakan data Firestore setelah integrasi selesai.</p></article></section>
+
+      <nav class="bottom-nav" id="bottomNav"><button class="active" data-page="dashboard"><span>▦</span>Home</button><button data-page="transaksi"><span>⇄</span>Transaksi</button><button data-page="rekening"><span>▤</span>Rekening</button><button data-page="utang"><span>↗</span>Utang</button><button data-page="laporan"><span>▥</span>Laporan</button></nav>
+    </main>
+  </div>
+
+  <div class="modal-backdrop" id="modal">
+    <form class="modal" id="txForm">
+      <div class="modal-head"><div><div class="eyebrow">CATAT AKTIVITAS</div><h2>Tambah transaksi</h2></div><button type="button" class="close" id="closeModal">×</button></div>
+      <label>Jenis transaksi<select id="txType"><option value="masuk">Pemasukan</option><option value="keluar">Pengeluaran</option><option value="transfer">Transfer</option><option value="tarik">Tarik tunai</option><option value="setor">Setor tunai</option><option value="topup">Top up e-wallet</option></select></label>
+      <label>Keterangan<input id="txName" required placeholder="Contoh: Top up DANA"></label>
+      <div class="form-row"><label>Nominal (Rp)<input id="txAmount" type="number" min="1" required placeholder="100000"></label><label>Tanggal<input id="txDate" type="date" required></label></div>
+      <label>Catatan (opsional)<textarea id="txNote" rows="2" placeholder="Tambahkan catatan…"></textarea></label>
+      <div class="demo-warning">Mode pratinjau: transaksi hanya disimpan di browser ini, bukan ke Firebase.</div>
+      <button class="primary full" type="submit">Simpan contoh transaksi</button>
+    </form>
+  </div>
+  <div class="toast" id="toast">Transaksi contoh ditambahkan.</div>
+  <script src="app.js"></script>
+</body>
+</html>
