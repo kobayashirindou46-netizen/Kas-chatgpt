@@ -1,87 +1,84 @@
 <!doctype html>
 <html lang="id">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#6d4aff">
-  <title>D'CELL — Buku Kas 2.0</title>
-  <link rel="stylesheet" href="styles.css">
-</head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#6f45ee"><title>D'CELL Buku Kas 2.0</title>
+<style>
+:root{--bg:#f6f3ff;--card:#fff;--ink:#211a3b;--muted:#817b96;--purple:#7047ee;--line:#eee9fa;--green:#15966b;--red:#e34e70}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:14px system-ui,-apple-system,Segoe UI,sans-serif}
+header{padding:20px 18px 14px;background:linear-gradient(135deg,#eee8ff,#fff);display:flex;justify-content:space-between;align-items:center}
+.brand{display:flex;align-items:center;gap:10px;font-weight:850;font-size:20px}.logo{width:42px;height:42px;border-radius:14px;background:linear-gradient(135deg,#9a70ff,#5829df);display:grid;place-items:center;color:white;font-size:23px}
+main{max-width:650px;margin:auto;padding:14px 14px 100px}.sub{color:var(--muted);font-size:12px;margin-top:2px}.balance{background:linear-gradient(120deg,#5c2bd9,#916cff);color:white;border-radius:22px;padding:20px;margin:8px 0 13px;box-shadow:0 12px 30px #7047ee30}.balance small{opacity:.8}.balance strong{display:block;font-size:29px;margin:8px 0}.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.card{background:var(--card);border:1px solid var(--line);border-radius:17px;padding:15px;box-shadow:0 5px 20px #33205b08}.card small{color:var(--muted)}.card strong{display:block;font-size:18px;margin-top:7px}.green{color:var(--green)}.red{color:var(--red)}.purple{color:var(--purple)}
+h2{font-size:16px;margin:20px 2px 10px}.menus{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.menu{border:1px solid var(--line);background:white;border-radius:15px;padding:13px 5px;text-align:center;color:var(--purple);font-weight:700}.menu span{display:block;font-size:22px;margin-bottom:5px}.section-head{display:flex;justify-content:space-between;align-items:center}.section-head h2{margin:20px 2px 10px}.btn{border:0;border-radius:12px;background:var(--purple);color:white;padding:11px 14px;font-weight:750}.list{background:white;border-radius:16px;border:1px solid var(--line);overflow:hidden}.item{display:flex;justify-content:space-between;gap:10px;padding:13px;border-bottom:1px solid var(--line)}.item:last-child{border:0}.item b{display:block}.item small{color:var(--muted)}.amount{text-align:right;font-weight:800;white-space:nowrap}.pill{font-size:10px;background:#f0ebff;color:var(--purple);padding:4px 7px;border-radius:20px}
+nav{position:fixed;bottom:0;left:0;right:0;background:#ffffffed;backdrop-filter:blur(12px);border-top:1px solid var(--line);display:flex;justify-content:space-around;padding:10px 2px calc(10px + env(safe-area-inset-bottom));z-index:3}nav button{border:0;background:none;color:var(--muted);font-size:11px;font-weight:700}nav button.active{color:var(--purple)}nav span{display:block;font-size:20px;margin-bottom:3px}
+.page{display:none}.page.active{display:block}.note{font-size:11px;color:var(--muted);line-height:1.5;margin:10px 3px}
+.modal{display:none;position:fixed;inset:0;background:#17102788;z-index:5;align-items:end;justify-content:center}.modal.show{display:flex}.sheet{background:white;color:var(--ink);width:min(650px,100%);border-radius:22px 22px 0 0;padding:20px 18px calc(22px + env(safe-area-inset-bottom));max-height:90vh;overflow:auto}.sheet h2{margin:0 0 15px}.field{display:block;margin:11px 0;font-weight:700;font-size:12px}.field input,.field select{display:block;width:100%;padding:12px;border:1px solid #e5def5;border-radius:10px;margin-top:6px;font:inherit;background:#fff}.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}.actions{display:flex;gap:9px;margin-top:16px}.actions button{flex:1}.ghost{background:#f0ebff;color:var(--purple)}.hidden{display:none!important}
+@media(min-width:650px){main{padding-top:25px}.modal{align-items:center}.sheet{border-radius:22px}}
+</style></head>
 <body>
-  <div class="app-shell">
-    <aside class="sidebar">
-      <a class="brand" href="#"><span class="brand-mark">D</span><span><b>D'CELL</b><small>BUKU KAS 2.0</small></span></a>
-      <div class="side-label">MENU UTAMA</div>
-      <nav id="sideNav">
-        <button class="nav-item active" data-page="dashboard"><span>▦</span> Dashboard</button>
-        <button class="nav-item" data-page="transaksi"><span>⇄</span> Transaksi</button>
-        <button class="nav-item" data-page="rekening"><span>▤</span> Rekening</button>
-        <button class="nav-item" data-page="utang"><span>↗</span> Utang & Piutang</button>
-        <button class="nav-item" data-page="laporan"><span>▥</span> Laporan</button>
-      </nav>
-      <div class="sidebar-bottom">
-        <div class="profile"><div class="avatar">D</div><div><b>Demo D'CELL</b><small>Mode pratinjau</small></div><span class="dots">•••</span></div>
-        <button class="nav-item" id="themeBtn"><span>◐</span> Ganti tema</button>
-      </div>
-    </aside>
-
-    <main class="main">
-      <header class="topbar">
-        <div class="mobile-brand"><span class="brand-mark">D</span><b>D'CELL</b></div>
-        <div class="breadcrumb">Workspace <span>/</span> <b id="crumb">Dashboard</b></div>
-        <div class="top-actions"><span class="date-chip" id="today"></span><button class="icon-btn" id="themeTop" aria-label="Ganti tema">◐</button><div class="avatar small">D</div></div>
-      </header>
-
-      <section class="page active" id="page-dashboard">
-        <div class="welcome">
-          <div><div class="eyebrow">RINGKASAN USAHA</div><h1>Selamat datang kembali 👋</h1><p>Pantau arus kas D'CELL dalam satu tempat.</p></div>
-          <button class="primary" id="addTop">＋ Tambah transaksi</button>
-        </div>
-        <div class="balance-card">
-          <div class="balance-head"><span>Total saldo usaha</span><span class="live-dot">● Pratinjau</span></div>
-          <div class="balance-value" id="totalBalance">Rp 12.450.000</div>
-          <div class="balance-foot"><span>Saldo gabungan rekening & kas</span><span class="balance-icon">↗</span></div>
-          <div class="balance-glow"></div>
-        </div>
-        <div class="stats-grid">
-          <article class="stat-card"><div class="stat-top"><span class="stat-icon income">↙</span><span class="stat-period">Bulan ini</span></div><small>Total pemasukan</small><strong class="green" id="incomeTotal">Rp 8.250.000</strong><div class="stat-note">Uang masuk tercatat</div></article>
-          <article class="stat-card"><div class="stat-top"><span class="stat-icon expense">↗</span><span class="stat-period">Bulan ini</span></div><small>Total pengeluaran</small><strong class="red" id="expenseTotal">Rp 3.780.000</strong><div class="stat-note">Uang keluar tercatat</div></article>
-          <article class="stat-card"><div class="stat-top"><span class="stat-icon profit">✧</span><span class="stat-period">Bulan ini</span></div><small>Selisih kas</small><strong id="netTotal">Rp 4.470.000</strong><div class="stat-note">Pemasukan dikurangi pengeluaran</div></article>
-        </div>
-        <div class="content-grid">
-          <article class="panel chart-panel"><div class="panel-head"><div><h2>Arus kas</h2><p>Ringkasan 7 hari terakhir</p></div><span class="select-lite">Minggu ini⌄</span></div>
-            <div class="chart-legend"><span><i class="legend-dot purple"></i>Pemasukan</span><span><i class="legend-dot pale"></i>Pengeluaran</span></div>
-            <div class="chart" aria-label="Grafik arus kas"><div class="y-labels"><span>4 jt</span><span>3 jt</span><span>2 jt</span><span>1 jt</span><span>0</span></div><div class="chart-area"><div class="grid-lines"><i></i><i></i><i></i><i></i><i></i></div><div class="bars" id="bars"><div class="bar-pair"><i style="height:66%"></i><b style="height:32%"></b><small>Sen</small></div><div class="bar-pair"><i style="height:42%"></i><b style="height:24%"></b><small>Sel</small></div><div class="bar-pair"><i style="height:76%"></i><b style="height:39%"></b><small>Rab</small></div><div class="bar-pair"><i style="height:55%"></i><b style="height:28%"></b><small>Kam</small></div><div class="bar-pair"><i style="height:88%"></i><b style="height:45%"></b><small>Jum</small></div><div class="bar-pair"><i style="height:48%"></i><b style="height:30%"></b><small>Sab</small></div><div class="bar-pair"><i style="height:68%"></i><b style="height:22%"></b><small>Min</small></div></div></div></div>
-          </article>
-          <article class="panel quick-panel"><div class="panel-head"><div><h2>Akses cepat</h2><p>Catat aktivitas usaha</p></div></div><div class="quick-grid"><button class="quick-action" data-type="masuk"><span class="quick-icon income">＋</span><b>Pemasukan</b><small>Catat uang masuk</small></button><button class="quick-action" data-type="keluar"><span class="quick-icon expense">−</span><b>Pengeluaran</b><small>Catat uang keluar</small></button><button class="quick-action" data-type="transfer"><span class="quick-icon transfer">⇄</span><b>Transfer</b><small>Transaksi bank</small></button><button class="quick-action" data-type="tarik"><span class="quick-icon wallet">▣</span><b>Tarik tunai</b><small>Layanan nasabah</small></button></div></article>
-        </div>
-        <article class="panel recent-panel"><div class="panel-head"><div><h2>Transaksi terbaru</h2><p>Aktivitas yang terakhir dicatat</p></div><button class="text-btn" data-goto="transaksi">Lihat semua →</button></div><div class="table-wrap"><table><thead><tr><th>TRANSAKSI</th><th>KATEGORI</th><th>TANGGAL</th><th>NOMINAL</th><th>STATUS</th></tr></thead><tbody id="recentRows"><tr><td><b>Setoran tunai</b><small>Nasabah D'CELL</small></td><td><span class="tag">Setor tunai</span></td><td>12 Nov 2026</td><td class="green">+ Rp 1.500.000</td><td><span class="status">Selesai</span></td></tr><tr><td><b>Pembelian token listrik</b><small>PLN 123456789</small></td><td><span class="tag">Tagihan</span></td><td>12 Nov 2026</td><td class="red">− Rp 250.000</td><td><span class="status">Selesai</span></td></tr><tr><td><b>Top up DANA</b><small>Pelanggan</small></td><td><span class="tag">E-wallet</span></td><td>11 Nov 2026</td><td class="green">+ Rp 103.000</td><td><span class="status">Selesai</span></td></tr></tbody></table></div></article>
-      </section>
-
-      <section class="page" id="page-transaksi"><div class="page-title"><div><div class="eyebrow">PENCATATAN</div><h1>Transaksi</h1><p>Kelola seluruh pemasukan dan pengeluaran.</p></div><button class="primary" id="addTransactions">＋ Tambah transaksi</button></div><article class="panel"><div class="panel-head"><div><h2>Semua transaksi</h2><p>Data contoh untuk pratinjau tampilan</p></div><input class="search" id="searchTx" placeholder="Cari transaksi…"></div><div class="table-wrap"><table><thead><tr><th>TRANSAKSI</th><th>KATEGORI</th><th>TANGGAL</th><th>NOMINAL</th><th>STATUS</th></tr></thead><tbody id="allRows"></tbody></table></div></article></section>
-
-      <section class="page" id="page-rekening"><div class="page-title"><div><div class="eyebrow">SUMBER DANA</div><h1>Rekening</h1><p>Pantau saldo kas, bank, dan e-wallet.</p></div></div><div class="account-grid"><article class="account-card cash"><span>UANG TUNAI</span><b>Rp 2.450.000</b><small>Kas di laci</small></article><article class="account-card"><span>BNI</span><b>Rp 6.500.000</b><small>Rekening bank</small></article><article class="account-card"><span>BRI</span><b>Rp 2.800.000</b><small>Rekening bank</small></article><article class="account-card"><span>E-WALLET</span><b>Rp 700.000</b><small>Saldo dompet digital</small></article></div></section>
-
-      <section class="page" id="page-utang"><div class="page-title"><div><div class="eyebrow">CATATAN PELANGGAN</div><h1>Utang & Piutang</h1><p>Pantau kewajiban dan tagihan pelanggan.</p></div><button class="primary" id="debtInfo">＋ Catatan baru</button></div><div class="stats-grid two"><article class="stat-card"><small>Total piutang</small><strong class="green">Rp 850.000</strong><div class="stat-note">Belum diterima</div></article><article class="stat-card"><small>Total utang</small><strong class="red">Rp 300.000</strong><div class="stat-note">Belum dibayar</div></article></div><article class="panel empty-note"><div class="empty-icon">↗</div><h2>Ringkasan utang & piutang</h2><p>Halaman ini adalah contoh tampilan. Data asli akan disambungkan setelah struktur Firestore lama diverifikasi.</p></article></section>
-
-      <section class="page" id="page-laporan"><div class="page-title"><div><div class="eyebrow">ANALISIS USAHA</div><h1>Laporan</h1><p>Lihat performa keuangan D'CELL.</p></div><span class="select-lite">November 2026⌄</span></div><div class="stats-grid"><article class="stat-card"><small>Pemasukan</small><strong class="green">Rp 8.250.000</strong></article><article class="stat-card"><small>Pengeluaran</small><strong class="red">Rp 3.780.000</strong></article><article class="stat-card"><small>Laba bersih</small><strong>Rp 4.470.000</strong></article></div><article class="panel empty-note"><div class="empty-icon">▥</div><h2>Laporan keuangan</h2><p>Grafik dan rekap periode akan menggunakan data Firestore setelah integrasi selesai.</p></article></section>
-
-      <nav class="bottom-nav" id="bottomNav"><button class="active" data-page="dashboard"><span>▦</span>Home</button><button data-page="transaksi"><span>⇄</span>Transaksi</button><button data-page="rekening"><span>▤</span>Rekening</button><button data-page="utang"><span>↗</span>Utang</button><button data-page="laporan"><span>▥</span>Laporan</button></nav>
-    </main>
-  </div>
-
-  <div class="modal-backdrop" id="modal">
-    <form class="modal" id="txForm">
-      <div class="modal-head"><div><div class="eyebrow">CATAT AKTIVITAS</div><h2>Tambah transaksi</h2></div><button type="button" class="close" id="closeModal">×</button></div>
-      <label>Jenis transaksi<select id="txType"><option value="masuk">Pemasukan</option><option value="keluar">Pengeluaran</option><option value="transfer">Transfer</option><option value="tarik">Tarik tunai</option><option value="setor">Setor tunai</option><option value="topup">Top up e-wallet</option></select></label>
-      <label>Keterangan<input id="txName" required placeholder="Contoh: Top up DANA"></label>
-      <div class="form-row"><label>Nominal (Rp)<input id="txAmount" type="number" min="1" required placeholder="100000"></label><label>Tanggal<input id="txDate" type="date" required></label></div>
-      <label>Catatan (opsional)<textarea id="txNote" rows="2" placeholder="Tambahkan catatan…"></textarea></label>
-      <div class="demo-warning">Mode pratinjau: transaksi hanya disimpan di browser ini, bukan ke Firebase.</div>
-      <button class="primary full" type="submit">Simpan contoh transaksi</button>
-    </form>
-  </div>
-  <div class="toast" id="toast">Transaksi contoh ditambahkan.</div>
-  <script src="app.js"></script>
-</body>
-</html>
+<header><div class="brand"><div class="logo">D</div><div>D’CELL<div class="sub">BUKU KAS 2.0 · PRATINJAU</div></div></div><span class="pill">● Offline demo</span></header>
+<main>
+<section class="page active" id="home">
+<div class="balance"><small>TOTAL SALDO KAS</small><strong id="balance">Rp 0</strong><small>Saldo awal + uang masuk − uang keluar</small></div>
+<div class="stats">
+<div class="card"><small>Total pemasukan</small><strong class="green" id="income">Rp 0</strong></div>
+<div class="card"><small>Total pengeluaran</small><strong class="red" id="expense">Rp 0</strong></div>
+<div class="card"><small>Laba bersih</small><strong class="purple" id="profit">Rp 0</strong><small>Pendapatan − biaya operasional</small></div>
+<div class="card"><small>Piutang belum diterima</small><strong id="receivable">Rp 0</strong></div>
+<div class="card"><small>Utang belum dibayar</small><strong id="payable">Rp 0</strong></div>
+<div class="card"><small>Saldo bersih setelah utang</small><strong id="net">Rp 0</strong></div>
+</div>
+<h2>Menu utama</h2><div class="menus">
+<button class="menu" onclick="openTx('income')"><span>＋</span>Pemasukan</button>
+<button class="menu" onclick="openTx('expense')"><span>−</span>Pengeluaran</button>
+<button class="menu" onclick="openDebt()"><span>↔</span>Utang/Piutang</button>
+</div>
+<div class="section-head"><h2>Transaksi terbaru</h2><button class="btn" onclick="openTx()">＋ Catat</button></div>
+<div class="list" id="recent"></div>
+<p class="note">Perhitungan demo: laba = pendapatan usaha − biaya operasional. Transfer antar-rekening, setor/tarik tunai, dan pencairan utang tidak dihitung sebagai laba.</p>
+</section>
+<section class="page" id="transactions"><div class="section-head"><h2>Semua transaksi</h2><button class="btn" onclick="openTx()">＋ Tambah</button></div><div class="list" id="allTx"></div></section>
+<section class="page" id="debts"><div class="section-head"><h2>Utang & Piutang</h2><button class="btn" onclick="openDebt()">＋ Catatan</button></div><div class="stats"><div class="card"><small>Piutang</small><strong id="receivable2">Rp 0</strong></div><div class="card"><small>Utang</small><strong id="payable2">Rp 0</strong></div></div><h2>Daftar catatan</h2><div class="list" id="debtList"></div></section>
+<section class="page" id="reports"><h2>Laporan keuangan</h2><div class="stats"><div class="card"><small>Pemasukan</small><strong class="green" id="rIncome">Rp 0</strong></div><div class="card"><small>Pengeluaran</small><strong class="red" id="rExpense">Rp 0</strong></div><div class="card"><small>Laba bersih</small><strong class="purple" id="rProfit">Rp 0</strong></div><div class="card"><small>Saldo kas</small><strong id="rBalance">Rp 0</strong></div></div><p class="note">Laporan dihitung ulang otomatis setiap kali transaksi ditambahkan.</p></section>
+</main>
+<nav><button class="active" data-page="home"><span>⌂</span>Beranda</button><button data-page="transactions"><span>⇄</span>Transaksi</button><button data-page="debts"><span>↔</span>Utang Piutang</button><button data-page="reports"><span>▥</span>Laporan</button></nav>
+<div class="modal" id="txModal"><form class="sheet" id="txForm"><h2>Catat transaksi</h2>
+<label class="field">Jenis transaksi<select id="txType"><option value="income">Pemasukan usaha</option><option value="expense">Pengeluaran usaha</option><option value="transfer">Transfer antar-rekening</option><option value="cashin">Setor tunai</option><option value="cashout">Tarik tunai</option></select></label>
+<label class="field">Keterangan<input id="txName" required placeholder="Contoh: Biaya admin transfer"></label>
+<div class="row"><label class="field">Nominal (Rp)<input id="txAmount" type="number" min="1" required></label><label class="field">Tanggal<input id="txDate" type="date" required></label></div>
+<div class="actions"><button type="button" class="btn ghost" onclick="closeModals()">Batal</button><button class="btn">Simpan</button></div></form></div>
+<div class="modal" id="debtModal"><form class="sheet" id="debtForm"><h2>Catatan utang / piutang</h2>
+<label class="field">Jenis<select id="debtType"><option value="receivable">Piutang (orang berutang ke kita)</option><option value="payable">Utang (kita berutang)</option></select></label>
+<label class="field">Nama / keterangan<input id="debtName" required placeholder="Nama pelanggan"></label>
+<div class="row"><label class="field">Nominal (Rp)<input id="debtAmount" type="number" min="1" required></label><label class="field">Jatuh tempo<input id="debtDate" type="date"></label></div>
+<div class="actions"><button type="button" class="btn ghost" onclick="closeModals()">Batal</button><button class="btn">Simpan catatan</button></div></form></div>
+<script>
+const fmt=n=>new Intl.NumberFormat('id-ID',{style:'currency',currency:'IDR',maximumFractionDigits:0}).format(n);
+const dateNow=()=>new Date().toISOString().slice(0,10);
+let openingBalance=0, txs=[], debts=[];
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function calc(){
+ const income=txs.filter(t=>t.type==='income').reduce((a,t)=>a+t.amount,0);
+ const expense=txs.filter(t=>t.type==='expense').reduce((a,t)=>a+t.amount,0);
+ const cashIn=txs.filter(t=>['income','cashin'].includes(t.type)).reduce((a,t)=>a+t.amount,0);
+ const cashOut=txs.filter(t=>['expense','cashout'].includes(t.type)).reduce((a,t)=>a+t.amount,0);
+ const balance=openingBalance+cashIn-cashOut;
+ const rec=debts.filter(d=>d.type==='receivable').reduce((a,d)=>a+d.amount,0);
+ const pay=debts.filter(d=>d.type==='payable').reduce((a,d)=>a+d.amount,0);
+ const profit=income-expense;
+ for(const [id,val] of Object.entries({balance,income,expense,profit,receivable:rec,payable:pay,net:balance+rec-pay,rIncome:income,rExpense:expense,rProfit:profit,rBalance:balance,receivable2:rec,payable2:pay}))document.getElementById(id).textContent=fmt(val);
+ render();
+}
+function render(){
+ const rows=txs.slice().reverse().map(t=>`<div class="item"><div><b>${esc(t.name)}</b><small>${esc(t.date)} · ${({income:'Pemasukan',expense:'Pengeluaran',transfer:'Transfer (non-laba)',cashin:'Setor tunai (non-laba)',cashout:'Tarik tunai (non-laba)'})[t.type]}</small></div><div class="amount ${t.type==='income'?'green':t.type==='expense'?'red':''}">${fmt(t.amount)}</div></div>`).join('')||'<div class="item">Belum ada transaksi.</div>';
+ document.getElementById('recent').innerHTML=rows;document.getElementById('allTx').innerHTML=rows;
+ document.getElementById('debtList').innerHTML=debts.map(d=>`<div class="item"><div><b>${esc(d.name)}</b><small>${d.date||'Tanpa jatuh tempo'} · ${d.type==='receivable'?'Piutang':'Utang'}</small></div><div class="amount ${d.type==='receivable'?'green':'red'}">${fmt(d.amount)}</div></div>`).join('')||'<div class="item">Belum ada catatan.</div>';
+}
+function openTx(type){document.getElementById('txForm').reset();document.getElementById('txDate').value=dateNow();if(type)document.getElementById('txType').value=type;document.getElementById('txModal').classList.add('show')}
+function openDebt(){document.getElementById('debtForm').reset();document.getElementById('debtDate').value=dateNow();document.getElementById('debtModal').classList.add('show')}
+function closeModals(){document.querySelectorAll('.modal').forEach(m=>m.classList.remove('show'))}
+document.getElementById('txForm').addEventListener('submit',e=>{e.preventDefault();txs.push({type:txType.value,name:txName.value.trim(),amount:Number(txAmount.value),date:txDate.value});closeModals();calc()});
+document.getElementById('debtForm').addEventListener('submit',e=>{e.preventDefault();debts.push({type:debtType.value,name:debtName.value.trim(),amount:Number(debtAmount.value),date:debtDate.value});closeModals();calc()});
+document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>{document.querySelectorAll('nav button').forEach(x=>x.classList.toggle('active',x===b));document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id===b.dataset.page));});
+calc();
+</script></body></html>
